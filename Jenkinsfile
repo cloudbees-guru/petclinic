@@ -22,7 +22,7 @@ spec:
       steps {
           git(url:'https://github.com/jpbriend/spring-petclinic', credentialsId: 'github')
         container('maven') {
-          sh 'mvn package'
+          sh 'mvn verify sonar:sonar'
         }
       }
     }
