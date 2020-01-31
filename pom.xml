@@ -29,6 +29,10 @@
 
     <jacoco.version>0.8.5</jacoco.version>
 
+    <!-- Sonar properties -->
+    <sonar.host.url>https://sonar.cloudbees.guru:9000</sonar.host.url>
+    <sonar.projectKey>spring-petclinic</sonar.projectKey>
+
   </properties>
 
   <dependencies>
