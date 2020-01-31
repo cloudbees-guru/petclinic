@@ -17,12 +17,15 @@ spec:
 """
     }
   }
+  environment {
+        SONAR_TOKEN = credentials('sonar.login')
+    }
   stages {
     stage('Run maven') {
       steps {
           git(url:'https://github.com/jpbriend/spring-petclinic', credentialsId: 'github')
         container('maven') {
-          sh 'mvn verify sonar:sonar'
+          sh 'mvn verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
         }
       }
     }
