@@ -30,6 +30,11 @@
     <jacoco.version>0.8.5</jacoco.version>
     <nohttp-checkstyle.version>0.0.4.RELEASE</nohttp-checkstyle.version>
     <spring-format.version>0.0.20</spring-format.version>
+
+    <!-- Sonar properties -->
+    <sonar.host.url>https://sonar.cloudbees.guru:9000</sonar.host.url>
+    <sonar.projectKey>spring-petclinic</sonar.projectKey>
+
   </properties>
 
   <dependencies>
@@ -274,7 +279,7 @@
           </dependency>
         </dependencies>
       </plugin>
-        
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
