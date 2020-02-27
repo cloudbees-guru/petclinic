@@ -32,7 +32,17 @@ spec:
           container('maven') {
             withMaven(
                       mavenSettingsConfig: '110e26fb-3a0b-43b2-bf09-9fdf26e2d80c') {
-              sh 'mvn clean verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
+              sh 'mvn clean verify'
+            }
+          }
+      }
+    }
+    stage('SonarQube analysis') {
+      steps {
+          container('maven') {
+            withMaven(
+                      mavenSettingsConfig: '110e26fb-3a0b-43b2-bf09-9fdf26e2d80c') {
+              sh 'mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
             }
           }
       }
