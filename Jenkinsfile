@@ -31,7 +31,7 @@ spec:
           git(url:'https://github.com/jpbriend/spring-petclinic', credentialsId: 'github-cloudbees-guru')
           container('maven') {
             withMaven(
-                      mavenSettingsConfig: 'MavenSettingsWithNexus') {
+                      mavenSettingsConfig: '110e26fb-3a0b-43b2-bf09-9fdf26e2d80c') {
               sh 'mvn clean verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
             }
           }
