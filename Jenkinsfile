@@ -30,7 +30,10 @@ spec:
       steps {
           git(url:'https://github.com/jpbriend/spring-petclinic', credentialsId: 'github')
           container('maven') {
-            sh 'mvn verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
+            withMaven(
+                      mavenSettingsConfig: 'MavenSettingsWithNexus') {
+              sh 'mvn clean verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
+            }
           }
       }
     }
