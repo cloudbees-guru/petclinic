@@ -17,6 +17,13 @@ spec:
     command:
     - cat
     tty: true
+    volumeMounts:
+      - name: cache
+        mountPath: /tmp/cache
+  volumes:
+    - name: cache
+      hostPath:
+        path: /tmp/cache
 """
     }
   }
