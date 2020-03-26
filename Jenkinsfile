@@ -41,7 +41,7 @@ spec:
           git(url:'https://github.com/jpbriend/spring-petclinic', credentialsId: 'github-cloudbees-guru')
           container('maven') {
             withMaven(
-                      mavenSettingsConfig: '110e26fb-3a0b-43b2-bf09-9fdf26e2d80c') {
+                      mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
               sh 'mvn clean verify'
             }
           }
