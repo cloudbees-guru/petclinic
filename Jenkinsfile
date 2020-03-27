@@ -38,7 +38,7 @@ spec:
   stages {
     stage('Run maven') {
       steps {
-          git(url:'https://github.com/cloudbees-guru/spring-petclinic', credentialsId: 'github-cloudbees-guru')
+          git(url:'https://github.com/cloudbees-guru/petclinic', credentialsId: 'github-cloudbees-guru')
           container('maven') {
             withMaven(
                       mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
@@ -67,7 +67,7 @@ spec:
               artifactPath = filesByGlob[0].path;
               // Assign to a boolean response verifying If the artifact name exists
               artifactExists = fileExists artifactPath;
-              
+
               if(artifactExists) {
                 nexusArtifactUploader(
                   nexusVersion: NEXUS_VERSION,
@@ -98,7 +98,7 @@ spec:
       }
     }
   }
-  
+
   post {
     always {
       junit 'target/surefire-reports/**/*.xml'
