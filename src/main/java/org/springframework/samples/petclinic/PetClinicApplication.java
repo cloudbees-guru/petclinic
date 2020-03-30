@@ -29,8 +29,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication(proxyBeanMethods = false)
 public class PetClinicApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PetClinicApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PetClinicApplication.class, args);
+	}
 
 }
