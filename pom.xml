@@ -36,10 +36,6 @@
     <sonar.host.url>https://sonar.cloudbees.guru:9000</sonar.host.url>
     <sonar.projectKey>spring-petclinic</sonar.projectKey>
 
-    <!-- Sonar properties -->
-    <sonar.host.url>https://sonar.cloudbees.guru:9000</sonar.host.url>
-    <sonar.projectKey>spring-petclinic</sonar.projectKey>
-
   </properties>
 
   <dependencies>
