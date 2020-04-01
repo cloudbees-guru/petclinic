@@ -13,7 +13,14 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.2.5.RELEASE</version>
   </parent>
-  <name>petclinic</name>
+  
+  <!-- added for wildfly -->
+    <groupId>io.tbc.spring.boot</groupId>
+    <artifactId>petclinic</artifactId>
+    <version>2.2.0</version>
+    <packaging>war</packaging>
+    <name>petclinic</name>
+    <description>petclinic demo</description>
 
   <properties>
 
