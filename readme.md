@@ -14,7 +14,7 @@ Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) applicatio
 git clone https://github.com/spring-projects/spring-petclinic.git
 cd spring-petclinic
 ./mvnw package
-java -jar target/*.jar
+java -jar target/*.war
 ```
 
 You can then access petclinic here: http://localhost:8080/
@@ -139,3 +139,13 @@ The Spring PetClinic sample application is released under version 2.0 of the [Ap
 [spring-petclinic-graphql]: https://github.com/spring-petclinic/spring-petclinic-graphql
 [spring-petclinic-kotlin]: https://github.com/spring-petclinic/spring-petclinic-kotlin
 [spring-petclinic-rest]: https://github.com/spring-petclinic/spring-petclinic-rest
+
+
+# Rollout Clinet Side SDK
+https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/javascript-sdk
+
+
+
+# Rollout Application Key
+
+5e8b3658ffd0b27719208a42
