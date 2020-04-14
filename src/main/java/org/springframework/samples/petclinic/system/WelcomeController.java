@@ -16,15 +16,26 @@
 
 package org.springframework.samples.petclinic.system;
 
+import com.cloudbees.rollout.FlagsContainer;
+import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 class WelcomeController {
 
+	private static FlagsContainer conf = PetClinicApplication.getConf();
+
 	@GetMapping("/")
 	public String welcome() {
-		return "welcome";
+
+		if (conf.newWelcome.isEnabled()) {
+			return "welcome_new";
+		}
+		else {
+			return "welcome";
+		}
+
 	}
 
 }

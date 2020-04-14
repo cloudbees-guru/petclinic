@@ -39,7 +39,8 @@ public class PetClinicApplication extends SpringBootServletInitializer {
 	static {
 		try {
 			Rox.register("default", conf);
-			Rox.setup("5e8b3658ffd0b27719208a42").get();
+			Rox.setup("5e95ad1fa6de03e3b693732d").get();
+			System.out.println("rollout init ");
 		}
 		catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -51,11 +52,11 @@ public class PetClinicApplication extends SpringBootServletInitializer {
 		}
 	}
 
-    public static FlagsContainer getConf() {
-        return conf;
-    }
+	public static FlagsContainer getConf() {
+		return conf;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
 
