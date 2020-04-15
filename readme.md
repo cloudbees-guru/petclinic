@@ -22,10 +22,47 @@ You can then access petclinic here: http://localhost:8080/
 <img width="1042" alt="petclinic-screenshot" src="https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png">
 
 Or you can run it from Maven directly using the Spring Boot Maven plugin. If you do this it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):
-
+## run war
 ```
 ./mvnw spring-boot:run
 ```
+## start/stop
+```
+./mvnw spring-boot:start / stop
+```
+
+## Debugging
+
+```
+./mvnw spring-boot:start  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+```
+
+
+or uncoment in pom.xml
+```
+  <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+
+        <configuration>
+          <!-- FOR REMOTE DEBUGGING
+             <jvmArguments>
+                 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+             </jvmArguments>
+             -->
+            <fork>false</fork>
+
+         </configuration>
+```
+
+# CloudBees Rollout Deom
+## Rollout Server Side Java SDK
+https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/java-sdk
+## Rollout Client Side SDK
+https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/javascript-sdk
+# Rollout Application Key
+register at https://app.rollout.io/ and get your ROLLOUTAPPLICATIONKEY
+
 
 ## In case you find a bug/suggested improvement for Spring Petclinic
 Our issue tracker is available here: https://github.com/spring-projects/spring-petclinic/issues
@@ -141,11 +178,3 @@ The Spring PetClinic sample application is released under version 2.0 of the [Ap
 [spring-petclinic-rest]: https://github.com/spring-petclinic/spring-petclinic-rest
 
 
-# Rollout Clinet Side SDK
-https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/javascript-sdk
-
-
-
-# Rollout Application Key
-
-5e8b3658ffd0b27719208a42
