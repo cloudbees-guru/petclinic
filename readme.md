@@ -55,7 +55,7 @@ or uncoment in pom.xml
          </configuration>
 ```
 
-# CloudBees Rollout Deom
+# CloudBees Rollout Demo
 ## Rollout Server Side Java SDK
 https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/java-sdk
 ## Rollout Client Side SDK
