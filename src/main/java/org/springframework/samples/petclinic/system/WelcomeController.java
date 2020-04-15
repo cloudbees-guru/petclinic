@@ -17,22 +17,33 @@
 package org.springframework.samples.petclinic.system;
 
 import com.cloudbees.rollout.FlagsContainer;
+import io.rollout.rox.server.Rox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+
 @Controller
 class WelcomeController {
+    Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
-	private static FlagsContainer conf = PetClinicApplication.getConf();
 
 	@GetMapping("/")
-	public String welcome() {
-
-		if (conf.newWelcome.isEnabled()) {
-			return "welcome_new";
+	public String welcome() throws IOException {
+        logger.info(FlagsContainer.conf().enableFeatureOne.toString());
+	    if (FlagsContainer.conf().enableFeatureOne.isEnabled()) {
+            logger.info("featureone true");
+			return "welcome_featureone";
 		}
 		else {
+            logger.info("featureone false");
 			return "welcome";
 		}
 
