@@ -30,9 +30,9 @@ and add your ROLLOUTOUT_APP_KEY in that line
 
 then
 
-``
+```
 ./mvnw spring-javaformat:apply && ./mvnw package -DskipTests  -Dcheckstle.skip &&  ./mvnw spring-boot:run  -Dcheckstyle.skip
-````
+```
 
 then
 
