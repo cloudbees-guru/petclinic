@@ -13,7 +13,7 @@ metadata:
 spec:
   containers:
   - name: maven
-    image: jdk-8
+    image: maven:3.6.2-jdk-8-slim
     command:
     - cat
     tty: true
@@ -42,7 +42,7 @@ spec:
           container('maven') {
             withMaven(
                       mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
-              sh 'mvnw package -DskipTests  -Dcheckstle.skip'
+              sh 'mvn clean verify'
             }
           }
       }
@@ -99,5 +99,10 @@ spec:
     }
   }
 
+  post {
+    always {
+      junit 'target/surefire-reports/**/*.xml'
+    }
+  }
   
 }
