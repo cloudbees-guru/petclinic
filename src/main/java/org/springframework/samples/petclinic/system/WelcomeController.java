@@ -32,25 +32,30 @@ public class WelcomeController {
 	@GetMapping("/")
 	public String welcome() throws IOException {
         
-        // Initialize container class that we created earlier
-        Flags flags = new Flags();
+        // Define the feature flags
+        public RoxFlag enableFeatureOne = new RoxFlag(false);
+        public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
+        //--END  Flags
 
-        // Register the flags container with Rollout
-        Rox.register("",flags);
 
-        // Setup the Rollout environment key
-        Rox.setup("5ea08b64b9e3830db8ff688a");
 
-        // Boolean flag example
-        if (flags.enableTutorial.isEnabled()) {
-          // TODO:  Put your code here that needs to be gated
-            logger.info("tutorial is enabled");
-			return "welcome_featureone";
-        }
-        else {
-            logger.info("tutorial is not enabled");
-			return "welcome_featureone";
-        }
+        private Logger logger = LoggerFactory.getLogger(FlagsContainer.class);
+        public static FlagsContainer conf = null;
+        static {
+            //innit FlagsContainer
+            if (conf == null) {
+                try {
+                    conf = new Flags();
+                    Rox.register("default", conf);
+                    Rox.setup("5ea08b64b9e3830db8ff688a").get();
+                    logger("rollout init:"
+                     conf.toString());
+                }
+                catch (Exception e) {
+                      e.printStackTrace();
+                }
+            }
+
 	}
 
 }
