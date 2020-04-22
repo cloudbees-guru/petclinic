@@ -13,8 +13,14 @@ Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) applicatio
 ```
 git clone https://github.com/spring-projects/spring-petclinic.git
 cd spring-petclinic
+./mvnw spring-javaformat:apply && ./mvnw package -DskipTests  -Dcheckstyle.skip &&  ./mvnw spring-boot:run  -Dcheckstyle.skip
+
+or
+
 ./mvnw package
 java -jar target/*.war
+
+
 ```
 
 You can then access petclinic here: http://localhost:8080/
