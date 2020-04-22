@@ -42,7 +42,7 @@ spec:
           container('maven') {
             withMaven(
                       mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
-              sh 'mvn clean verify'
+              sh 'mvnw package -DskipTests  -Dcheckstle.skip'
             }
           }
       }
