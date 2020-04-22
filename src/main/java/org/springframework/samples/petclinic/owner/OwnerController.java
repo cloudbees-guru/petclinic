@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
-import com.cloudbees.rollout.FlagsContainer;
+import com.cloudbees.rollout.Flags;
 
 /**
  * @author Juergen Hoeller
