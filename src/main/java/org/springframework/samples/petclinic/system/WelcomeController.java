@@ -16,7 +16,7 @@
 
 package org.springframework.samples.petclinic.system;
 
-import com.cloudbees.rollout.FlagsContainer;
+import com.cloudbees.rollout.Flags;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -31,16 +31,26 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public String welcome() throws IOException {
-		logger.info(FlagsContainer.conf.enableFeatureOne.toString());
-		if (FlagsContainer.conf.enableFeatureOne.isEnabled()) {
-			logger.info("featureone true");
-			return "welcome_featureone";
-		}
-		else {
-			logger.info("featureone false");
-			return "welcome";
-		}
+        
+        // Initialize container class that we created earlier
+        Flags flags = new Flags();
 
+        // Register the flags container with Rollout
+        Rox.register("",flags);
+
+        // Setup the Rollout environment key
+        Rox.setup("5ea08b64b9e3830db8ff688a");
+
+        // Boolean flag example
+        if (flags.enableTutorial.isEnabled()) {
+          // TODO:  Put your code here that needs to be gated
+            logger.info("tutorial is enabled");
+			return "welcome_featureone";
+        }
+        else {
+            logger.info("tutorial is not enabled");
+			return "welcome_featureone";
+        }
 	}
 
 }
