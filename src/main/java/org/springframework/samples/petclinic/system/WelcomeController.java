@@ -24,21 +24,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 
-
 @Controller
-class WelcomeController {
-    Logger logger = LoggerFactory.getLogger(WelcomeController.class);
+public class WelcomeController {
 
+	Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
 	@GetMapping("/")
 	public String welcome() throws IOException {
-        logger.info(FlagsContainer.conf().enableFeatureOne.toString());
-	    if (FlagsContainer.conf().enableFeatureOne.isEnabled()) {
-            logger.info("featureone true");
+		logger.info(FlagsContainer.conf.enableFeatureOne.toString());
+		if (FlagsContainer.conf.enableFeatureOne.isEnabled()) {
+			logger.info("featureone true");
 			return "welcome_featureone";
 		}
 		else {
-            logger.info("featureone false");
+			logger.info("featureone false");
 			return "welcome";
 		}
 
