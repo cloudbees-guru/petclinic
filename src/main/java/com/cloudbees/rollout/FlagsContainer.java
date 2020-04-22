@@ -33,7 +33,8 @@ public class FlagsContainer implements RoxContainer {
 				conf = new FlagsContainer();
 				Rox.register("default", conf);
 				// Rox.setup("5e95ad1fa6de03e3b693732d", withRoxOptions()).get();
-				Rox.setup("5e95ad1fa6de03e3b693732d").get();
+				//TODO: inject key by  property during bootstrap with system property
+                Rox.setup("5e95ad1fa6de03e3b693732d").get();
 				Rox.fetch();
 				logger.info("rollout init:", conf.toString());
 			}
