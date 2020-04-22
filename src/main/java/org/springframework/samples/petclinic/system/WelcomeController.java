@@ -16,15 +16,31 @@
 
 package org.springframework.samples.petclinic.system;
 
+import com.cloudbees.rollout.FlagsContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.io.IOException;
+
 @Controller
-class WelcomeController {
+public class WelcomeController {
+
+	Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
 	@GetMapping("/")
-	public String welcome() {
-		return "welcome";
+	public String welcome() throws IOException {
+		logger.info(FlagsContainer.conf.enableFeatureOne.toString());
+		if (FlagsContainer.conf.enableFeatureOne.isEnabled()) {
+			logger.info("featureone true");
+			return "welcome_featureone";
+		}
+		else {
+			logger.info("featureone false");
+			return "welcome";
+		}
+
 	}
 
 }

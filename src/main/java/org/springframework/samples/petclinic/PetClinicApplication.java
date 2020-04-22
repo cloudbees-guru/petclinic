@@ -16,15 +16,20 @@
 
 package org.springframework.samples.petclinic;
 
+import com.cloudbees.rollout.FlagsContainer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+import java.util.concurrent.ExecutionException;
+
+import io.rollout.configuration.RoxContainer;
+import io.rollout.rox.server.Rox;
 
 /**
  * PetClinic Spring Boot Application.
  *
  * @author Dave Syer
- *
  */
 @SpringBootApplication(proxyBeanMethods = false)
 public class PetClinicApplication extends SpringBootServletInitializer {
