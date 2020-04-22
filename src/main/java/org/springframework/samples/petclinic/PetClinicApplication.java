@@ -16,7 +16,7 @@
 
 package org.springframework.samples.petclinic;
 
-import com.cloudbees.rollout.FlagsContainer;
+import com.cloudbees.rollout.Flags;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
