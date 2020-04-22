@@ -9,13 +9,39 @@
 ## Running petclinic locally
 Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
+## Rollout
+
+for a CloudBees Rollout  integration you need to follow this steps:
+https://docs.cloudbees.com/docs/cloudbees-rollout/latest/getting-started-guide/java-sdk
+
+then
+
+
 
 ```
 git clone https://github.com/spring-projects/spring-petclinic.git
 cd spring-petclinic
-./mvnw package
-java -jar target/*.war
+
 ```
+
+then open file `src/main/java/com/cloudbees/rollout/FlagsContainer.java`
+and add your ROLLOUTOUT_APP_KEY in that line
+`Rox.setup("5e95ad1fa6de03e3b693732d").get();`
+
+then
+
+```
+./mvnw spring-javaformat:apply && ./mvnw package -DskipTests  -Dcheckstle.skip &&  ./mvnw spring-boot:run  -Dcheckstyle.skip
+```
+
+then
+
+```
+open http://ocalhost:8080
+
+```
+
+then toggle enableFeatureOne from treu/false and reload the welcome page
 
 You can then access petclinic here: http://localhost:8080/
 
