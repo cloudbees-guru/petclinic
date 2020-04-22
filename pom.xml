@@ -75,19 +75,20 @@
             </exclusion>
         </exclusions>
     </dependency>
-
+      
+      <!-- Added for rollout -->
       <dependency>
           <groupId>io.rollout.rox</groupId>
           <artifactId>rox-java-server</artifactId>
-          <version>4.8.1</version>
+          <version>4.6.0</version>
       </dependency>
-
+      
     <!-- Added to run on Tomcat -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-tomcat</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <groupId>io.rollout.rox</groupId>
+    <artifactId>rox-java-server</artifactId>
+    <version>4.6.0</version>
+</dependency>
 
     <!-- Databases - Uses H2 by default -->
     <dependency>
