@@ -13,7 +13,7 @@ metadata:
 spec:
   containers:
   - name: maven
-    image: maven:3.6.2-jdk-8-slim
+    image: jdk-8
     command:
     - cat
     tty: true
