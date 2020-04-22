@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.samples.petclinic.system.WelcomeController;
 
 // Create Roxflags in the Flags container class
-public class FlagsContainer implements RoxContainer {
+public class Flags implements RoxContainer {
 
 	// Define the feature flags
 	public static RoxFlag enableFeatureOne = new RoxFlag(true);
@@ -22,14 +22,14 @@ public class FlagsContainer implements RoxContainer {
 
 	// --END Flags
 
-	private static Logger logger = LoggerFactory.getLogger(FlagsContainer.class);
+	private static Logger logger = LoggerFactory.getLogger(Flags.class);
 
-	public static FlagsContainer conf = null;
+	public static Flags conf = null;
 	static {
 		// innit FlagsContainer
 		if (conf == null) {
 			try {
-				conf = new FlagsContainer();
+				conf = new Flags();
 				Rox.register("default", conf);
 				// Rox.setup("5e95ad1fa6de03e3b693732d", withRoxOptions()).get();
 				//TODO: inject key by  property during bootstrap with system property
