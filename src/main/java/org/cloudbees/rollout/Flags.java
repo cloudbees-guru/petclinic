@@ -1,4 +1,4 @@
-package com.cloudbees.rollout;
+package org.cloudbees.rollout;
 
 import io.rollout.flags.RoxFlag;
 import io.rollout.configuration.RoxContainer;
@@ -19,40 +19,11 @@ public class Flags implements RoxContainer {
 
 	public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
 
-	// Define the feature flags
-	public static RoxFlag enableFeatureOne = new RoxFlag(true);
+	public RoxFlag enableFeatureOne = new RoxFlag(false);
 
 	// public RoxVariant titleColors = new RoxVariant("White", new String[] { "White",
 	// "Blue", "Green" });
 
 	// --END Flags
-
-	private static Logger logger = LoggerFactory.getLogger(Flags.class);
-
-	public static Flags conf = null;
-	static {
-		// init Flags
-		if (conf == null) {
-			try {
-				conf = new Flags();
-				Rox.register("default", conf);
-				Rox.setup("5ea08b64b9e3830db8ff688a").get();
-				Rox.fetch();
-				logger.info("rollout init:", conf.toString());
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private static RoxOptions withRoxOptions() {
-		return new RoxOptions.Builder().withConfigurationFetchedHandler(new ConfigurationFetchedHandler() {
-			@Override
-			public void onConfigurationFetched(FetcherResults results) {
-				logger.info("Got Rollout configuration " + results.toString());
-			}
-		}).build();
-	}
 
 }
