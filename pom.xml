@@ -75,20 +75,13 @@
             </exclusion>
         </exclusions>
     </dependency>
-      
-      <!-- Added for rollout -->
-      <dependency>
-          <groupId>io.rollout.rox</groupId>
-          <artifactId>rox-java-server</artifactId>
-          <version>4.6.0</version>
-      </dependency>
-      
+
     <!-- Added to run on Tomcat -->
     <dependency>
-    <groupId>io.rollout.rox</groupId>
-    <artifactId>rox-java-server</artifactId>
-    <version>4.6.0</version>
-</dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- Databases - Uses H2 by default -->
     <dependency>
@@ -207,16 +200,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-
-        <configuration>
-          <!-- FOR REMOTE DEBUGGING
-             <jvmArguments>
-                 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-             </jvmArguments>
-             -->
-            <fork>false</fork>
-            
-         </configuration>
         <executions>
           <execution>
             <!-- Spring Boot Actuator displays build-related information
@@ -225,13 +208,12 @@
               <goal>build-info</goal>
             </goals>
             <configuration>
-               <additionalProperties>
+              <additionalProperties>
                 <encoding.source>${project.build.sourceEncoding}</encoding.source>
                 <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
                 <java.source>${maven.compiler.source}</java.source>
                 <java.target>${maven.compiler.target}</java.target>
               </additionalProperties>
-
             </configuration>
           </execution>
         </executions>
