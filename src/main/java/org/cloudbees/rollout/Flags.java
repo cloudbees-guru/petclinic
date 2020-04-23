@@ -11,7 +11,6 @@ import io.rollout.rox.server.RoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 // Create Roxflags in the Flags container class
 public class Flags implements RoxContainer {
 
