@@ -14,11 +14,13 @@ import org.springframework.samples.petclinic.system.WelcomeController;
 
 // Create Roxflags in the Flags container class
 public class Flags implements RoxContainer {
-  // Define the feature flags
-  public RoxFlag enableTutorial = new RoxFlag(false);
-  public RoxVariant titleColors = new RoxVariant("White", new String[] {"White", "Blue", "Green"});
 
-  // Define the feature flags
+	// Define the feature flags
+	public RoxFlag enableTutorial = new RoxFlag(false);
+
+	public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
+
+	// Define the feature flags
 	public static RoxFlag enableFeatureOne = new RoxFlag(true);
 
 	// public RoxVariant titleColors = new RoxVariant("White", new String[] { "White",
@@ -53,4 +55,5 @@ public class Flags implements RoxContainer {
 			}
 		}).build();
 	}
+
 }
