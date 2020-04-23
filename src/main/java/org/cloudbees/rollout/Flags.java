@@ -1,4 +1,4 @@
-package com.cloudbees.rollout;
+package org.springframework.samples.petclinic;
 
 import io.rollout.flags.RoxFlag;
 import io.rollout.configuration.RoxContainer;
