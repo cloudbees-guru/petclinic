@@ -30,12 +30,9 @@ public class FlagsController implements RoxContainer {
 			Rox.setup(ffkey).get();
 			Rox.fetch();
 		}
-		catch (InterruptedException ie) {
-			logger.error("Exception while initializing Rollout flags: ", ie);
-		}
-		catch (ExecutionException ee) {
-			logger.error("Exception while initializing Rollout flags: ", ee);
-		}
+        catch (ExecutionException | InterruptedException ee) {
+            logger.error("Exception while initializing Rollout flags: ", ee);
+        }
 	}
 
 }

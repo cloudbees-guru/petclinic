@@ -23,8 +23,6 @@ import org.springframework.samples.petclinic.rollout.FlagsController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-
 @Controller
 public class WelcomeController {
 
@@ -34,8 +32,7 @@ public class WelcomeController {
 	private FlagsController flags;
 
 	@GetMapping("/")
-	public String welcome() throws IOException {
-
+	public String welcome() {
 		if (flags.enableFeatureOne.isEnabled()) {
 			logger.info("featureone true");
 			return "welcome_featureone";
@@ -43,7 +40,5 @@ public class WelcomeController {
 		else {
 			return "welcome";
 		}
-
 	}
-
 }
