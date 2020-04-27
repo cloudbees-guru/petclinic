@@ -54,10 +54,9 @@ spec:
                cat file.json.new | grep value.*false | wc -l
                echo active:
                cat file.json.new | grep (active) value.*true | wc -l
-               ALLEXP=`cat file.json.new | grep value | wc -l`
-               echo test ${ALLEXP}
                echo "***************"
               """
+              sh 'ALLEXP=`cat file.json.new | grep value | wc -l`; echo test ${ALLEXP}'
             }
           }
       }
