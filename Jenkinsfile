@@ -50,10 +50,12 @@ spec:
                echo "***************"
                echo experiment count:
                cat file.json.new | grep value | wc -l
-               echo experiment count (inactive):
+               echo inactive:
                cat file.json.new | grep value.*false | wc -l
-               echo experiment count:
+               echo active:
                cat file.json.new | grep (active) value.*true | wc -l
+               ALLEXP=`cat file.json.new | grep value | wc -l`
+               echo test ${ALLEXP}
                echo "***************"
               """
             }
