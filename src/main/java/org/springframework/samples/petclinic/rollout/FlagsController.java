@@ -24,7 +24,7 @@ public class FlagsController implements RoxContainer {
 
 	@PostConstruct
 	void postConstruct() {
-		logger.info("Initializing Rollout flags...");
+		logger.info("Initializing Rollout flags... (using: " + ffkey + ")");
 		Rox.register("default", this);
 		try {
 			Rox.setup(ffkey).get();
