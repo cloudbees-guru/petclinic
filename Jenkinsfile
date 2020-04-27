@@ -55,8 +55,6 @@ spec:
                echo experiment count:
                cat file.json.new | grep (active) value.*true | wc -l
                echo "***************"
-               ALLEXP=`cat file.json.new | grep value | wc -l`
-               echo asdf ${ALLEXP}
               """
             }
           }
