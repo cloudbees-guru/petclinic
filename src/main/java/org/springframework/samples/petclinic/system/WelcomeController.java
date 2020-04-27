@@ -38,6 +38,7 @@ public class WelcomeController {
 			return "welcome_featureone";
 		}
 		else {
+			logger.info("featureone false");
 			return "welcome";
 		}
 	}
