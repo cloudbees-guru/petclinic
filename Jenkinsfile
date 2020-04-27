@@ -42,8 +42,7 @@ spec:
       steps {
           git(url:'https://github.com/cloudbees-guru/petclinic', credentialsId: 'github-cloudbees-guru')
           container('maven') {
-            withMaven(
-                      mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
+            script {
               sh """
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
                cat file.json | sed -e 's/},/},\\n/g' > file.json.new
