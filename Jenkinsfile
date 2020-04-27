@@ -53,7 +53,7 @@ spec:
                echo inactive:
                cat file.json.new | grep value.*false | wc -l
                echo active:
-               cat file.json.new | grep (active) value.*true | wc -l
+               cat file.json.new | grep value.*true | wc -l
                echo "***************"
               """
               sh 'ALLEXP=`cat file.json.new | grep value | wc -l`; echo test ${ALLEXP}'
