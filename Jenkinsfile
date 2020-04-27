@@ -46,7 +46,7 @@ spec:
                       mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
               sh """
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
-               cat file.json | sed -e "s/},/},\n/g" > file.json.new
+               cat file.json | sed -e 's/},/},\n/g' > file.json.new
                echo "***************"
                echo experiment count:
                cat file.json.new | grep value | wc -l
@@ -55,6 +55,8 @@ spec:
                echo experiment count:
                cat file.json.new | grep (active) value.*true | wc -l
                echo "***************"
+               ALLEXP=`cat file.json.new | grep value | wc -l`
+               echo asdf ${ALLEXP}
               """
             }
           }
