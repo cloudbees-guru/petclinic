@@ -51,12 +51,10 @@ spec:
                echo experiment count:
                cat file.json.new | grep value | wc -l
                echo inactive:
-               cat file.json.new | grep value.*false | wc -l
-               echo active:
-               cat file.json.new | grep value.*true | wc -l
-               echo "***************"
+               cat file.json.new | grep enabled.*false | wc -l
               """
-              sh 'ALLEXP=`cat file.json.new | grep value | wc -l`; echo test ${ALLEXP}'
+              ALLEXP = sh(script: "git rev-parse ${commit}", returnStdout: true)
+              sh 'echo test ${ALLEXP}'
             }
           }
       }
