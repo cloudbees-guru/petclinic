@@ -51,9 +51,9 @@ spec:
                INACTIVEEXP=`cat file.json.new | grep value.*false | wc -l`
                ACTIVEEXP=`cat file.json.new | grep value.*true | wc -l`
                echo "***************"
-               echo experiment count: $ALLEXP
-               echo active $ACTIVEEXP
-               echo inactive $INACTIVEEXP
+               echo experiment count: ${ALLEXP}
+               echo active ${ACTIVEEXP}
+               echo inactive ${INACTIVEEXP}
                echo "***************"
               """
             }
