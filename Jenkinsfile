@@ -42,6 +42,67 @@ spec:
       steps {
           git(url:'https://github.com/cloudbees-guru/petclinic', credentialsId: 'github-cloudbees-guru')
           container('maven') {
+            withMaven(
+                      mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
+              sh 'mvn clean verify'
+            }
+          }
+      }
+    }
+    stage('SonarQube analysis') {
+      steps {
+          container('maven') {
+            withMaven(
+                      mavenSettingsConfig: '8b13860a-f881-47c0-81bf-4192e70fc34d') {
+              sh 'mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
+            }
+          }
+      }
+    }
+    stage('Publish to Nexus') {
+      steps {
+          container('maven') {
+            script {
+              pom = readMavenPom file: "pom.xml";
+              filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+              // Extract the path from the File found
+              artifactPath = filesByGlob[0].path;
+              // Assign to a boolean response verifying If the artifact name exists
+              artifactExists = fileExists artifactPath;
+
+              if(artifactExists) {
+                nexusArtifactUploader(
+                  nexusVersion: NEXUS_VERSION,
+                  protocol: NEXUS_PROTOCOL,
+                  nexusUrl: NEXUS_URL,
+                  groupId: pom.groupId,
+                  version: pom.version,
+                  repository: NEXUS_REPOSITORY,
+                  credentialsId: NEXUS_CREDENTIAL_ID,
+                  artifacts: [
+                    // Artifact generated such as .jar, .ear and .war files.
+                    [artifactId: pom.artifactId,
+                      classifier: '',
+                      file: artifactPath,
+                      type: pom.packaging],
+                      // Lets upload the pom.xml file for additional information for Transitive dependencies
+                      [artifactId: pom.artifactId,
+                        classifier: '',
+                        file: "pom.xml",
+                        type: "pom"]
+                    ]
+                  );
+               } else {
+                 error "*** File: ${artifactPath}, could not be found";
+               }
+            }
+          }
+      }
+    }
+
+    stage('Feature flag usage check') {
+      steps {
+          container('maven') {
             script {
               sh """
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
@@ -60,6 +121,13 @@ spec:
             }
           }
       }
+    }
+
+  }
+
+  post {
+    always {
+      junit 'target/surefire-reports/**/*.xml'
     }
   }
 }
