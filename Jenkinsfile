@@ -53,8 +53,11 @@ spec:
                echo inactive:
                cat file.json.new | grep enabled.*false | wc -l
               """
-              def ALLEXP = sh(script: "cat file.json.new | grep value | wc -l", returnStdout: true)
-              echo ${ALLEXP}
+              ALLEXP = sh (
+                  script: 'cat file.json.new | grep value | wc -l',
+                  returnStdout: true
+              ).trim()
+              echo "ALLEXP: ${ALLEXP}"
             }
           }
       }
