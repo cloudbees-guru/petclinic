@@ -53,8 +53,8 @@ spec:
                echo inactive:
                cat file.json.new | grep enabled.*false | wc -l
               """
-              ALLEXP = sh(script: "git rev-parse ${commit}", returnStdout: true)
-              sh 'echo test ${ALLEXP}'
+              def ALLEXP = sh(script: "cat file.json.new | grep value | wc -l", returnStdout: true)
+              echo ${ALLEXP}
             }
           }
       }
