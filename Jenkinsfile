@@ -46,17 +46,17 @@ spec:
               sh """
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
                cat file.json | sed -e 's/},/},\\n/g' > file.json.new
-               echo "***************"
-               echo experiment count:
-               cat file.json.new | grep value | wc -l
-               echo inactive:
-               cat file.json.new | grep enabled.*false | wc -l
               """
               ALLEXP = sh (
                   script: 'cat file.json.new | grep value | wc -l',
                   returnStdout: true
               ).trim()
-              echo "ALLEXP: ${ALLEXP}"
+              echo "All experiments: ${ALLEXP}"
+              KILLEDEXP = sh (
+                  script: 'cat file.json.new | grep enabled.*false | wc -l',
+                  returnStdout: true
+              ).trim()
+              echo "Inactive experiments: ${KILLEDEXP}"
             }
           }
       }
