@@ -48,12 +48,12 @@ spec:
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
                cat file.json | sed -e "s/},/},\n/g" > file.json.new
                ALLEXP=`cat file.json.new | grep value | wc -l`
-               INACTIVEEXP=`cat file.json.new | grep value.*false | wc -l`
-               ACTIVEEXP=`cat file.json.new | grep value.*true | wc -l`
+               ALLEXP = sh (
+                  script: "cat file.json.new | grep value | wc -l",
+                  returnStatus: true
+               ) == 0
                echo "***************"
                echo experiment count: ${ALLEXP}
-               echo active ${ACTIVEEXP}
-               echo inactive ${INACTIVEEXP}
                echo "***************"
               """
             }
