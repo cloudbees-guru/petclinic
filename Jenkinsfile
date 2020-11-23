@@ -32,7 +32,7 @@ spec:
   }
 
   environment {
-    NEXUS_INSTANCE = "Nexus CloudBees Guru"
+    NEXUS_INSTANCE = "Nexus_CloudBees_Guru"
     NEXUS_REPOSITORY = "shared-demos"
     ROLLOUT_APP_TOKEN = "$ROLLOUT_APP_TOKEN"
     ROLLOUT_USER_TOKEN = "$ROLLOUT_USER_TOKEN"
