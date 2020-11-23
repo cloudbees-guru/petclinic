@@ -1,7 +1,10 @@
 pipeline {
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '10'))
+    skipDefaultCheckout true
   }
+
   agent {
     kubernetes {
       yaml """
@@ -13,7 +16,7 @@ metadata:
 spec:
   containers:
   - name: maven
-    image: maven:3.6.2-jdk-8-slim
+    image: maven:3.6.3-jdk-11-slim
     command:
     - cat
     tty: true
@@ -27,16 +30,14 @@ spec:
 """
     }
   }
+
   environment {
-    SONAR_TOKEN = credentials('sonar.login')
-    NEXUS_VERSION = "nexus3"
-    NEXUS_PROTOCOL = "https"
-    NEXUS_URL = "nexus.cloudbees.guru:8081"
+    NEXUS_INSTANCE = "Nexus CloudBees Guru"
     NEXUS_REPOSITORY = "shared-demos"
-    NEXUS_CREDENTIAL_ID = "nexus"
     ROLLOUT_APP_TOKEN = "$ROLLOUT_APP_TOKEN"
     ROLLOUT_USER_TOKEN = "$ROLLOUT_USER_TOKEN"
-    }
+  }
+
   stages {
     stage('Run maven') {
       steps {
@@ -77,27 +78,10 @@ spec:
               artifactExists = fileExists artifactPath;
 
               if(artifactExists) {
-                nexusArtifactUploader(
-                  nexusVersion: NEXUS_VERSION,
-                  protocol: NEXUS_PROTOCOL,
-                  nexusUrl: NEXUS_URL,
-                  groupId: pom.groupId,
-                  version: pom.version,
-                  repository: NEXUS_REPOSITORY,
-                  credentialsId: NEXUS_CREDENTIAL_ID,
-                  artifacts: [
-                    // Artifact generated such as .jar, .ear and .war files.
-                    [artifactId: pom.artifactId,
-                      classifier: '',
-                      file: artifactPath,
-                      type: pom.packaging],
-                      // Lets upload the pom.xml file for additional information for Transitive dependencies
-                      [artifactId: pom.artifactId,
-                        classifier: '',
-                        file: "pom.xml",
-                        type: "pom"]
-                    ]
-                  );
+                nexusPublisher  nexusInstanceId: NEXUS_INSTANCE,
+                                nexusRepositoryId: NEXUS_REPOSITORY,
+                                packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: artifactPath]],
+                                mavenCoordinate: [artifactId: pom.artifactId, groupId: pom.groupId, packaging: pom.packaging, version: pom.version]]];
                } else {
                  error "*** File: ${artifactPath}, could not be found";
                }
@@ -127,7 +111,6 @@ spec:
           }
       }
     }
-
   }
 
   post {
