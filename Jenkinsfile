@@ -53,7 +53,9 @@ spec:
       steps {
           container('maven') {
             withMaven(
-                      mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250') {
+                      mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
+                      options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
+                      publisherStrategy: 'EXPLICIT') {
               sh 'mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
             }
           }
@@ -99,7 +101,6 @@ spec:
           }
       }
     }
-
     stage('Feature flag usage check') {
       steps {
           container('maven') {
