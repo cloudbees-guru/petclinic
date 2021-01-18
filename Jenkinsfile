@@ -77,7 +77,7 @@ spec:
               // Assign to a boolean response verifying If the artifact name exists
               artifactExists = fileExists artifactPath;
 
-              if(artifactExists) {
+              if (artifactExists) {
                 nexusPublisher  nexusInstanceId: NEXUS_INSTANCE,
                                 nexusRepositoryId: NEXUS_REPOSITORY,
                                 packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: artifactPath]],
