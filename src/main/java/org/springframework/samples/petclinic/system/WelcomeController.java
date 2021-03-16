@@ -32,14 +32,21 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public String welcome() {
+		if (flags.enableMemberLogin.isEnabled()) {
+			logger.info("Member Login feature is enabled");
+		}
+		else {
+			logger.info("Member Login feature is NOT enabled");
+		}
 		if (flags.enableFeatureOne.isEnabled()) {
 			logger.info("featureone true");
 			return "welcome_featureone";
 		}
 		else {
 			logger.info("featureone false");
-			return "welcome";
 		}
+
+		return "welcome";
 	}
 
 }
