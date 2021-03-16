@@ -19,7 +19,7 @@ package org.springframework.samples.petclinic.system;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.rollout.FlagsController;
+import org.springframework.samples.petclinic.rollout.FlagsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -29,7 +29,7 @@ public class WelcomeController {
 	Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
 	@Autowired
-	private FlagsController flags;
+	private FlagsService flags;
 
 	@GetMapping("/")
 	public String welcome() {

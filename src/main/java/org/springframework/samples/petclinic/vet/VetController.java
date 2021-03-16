@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.rollout.FlagsService;
 
 /**
  * @author Juergen Hoeller
@@ -31,6 +33,9 @@ import java.util.Map;
 class VetController {
 
 	private final VetRepository vets;
+
+	@Autowired
+	private FlagsService flags;
 
 	public VetController(VetRepository clinicService) {
 		this.vets = clinicService;
