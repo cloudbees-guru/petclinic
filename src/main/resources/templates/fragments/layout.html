@@ -59,7 +59,7 @@
                       <span>Veterinarians</span>
                   </li>
 
-                  <li th:if="${@flagsService.isEnableMemberLogin()}" th:replace="::menuItem ('/login','login','login','lock','Member Login')">
+                  <li th:replace="${@flagsService.isEnableMemberLogin()} ? ~{::menuItem ('/login','login','login','lock','Member Login')} : _">
                       <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                       <span>Member Login</span>
                   </li>
