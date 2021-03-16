@@ -58,12 +58,11 @@
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       <span>Veterinarians</span>
                   </li>
-                  <span th:if="${@flags.isEnableMemberLogin()}">
-                    <li th:replace="::menuItem ('/login','login','login','lock','Member Login')">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                        <span>Member Login</span>
-                    </li>
-                  </span>
+
+                  <li th:if="${@flagsService.isEnableMemberLogin()}" th:replace="::menuItem ('/login','login','login','lock','Member Login')">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                      <span>Member Login</span>
+                  </li>
                   <!--
                   <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
                       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>

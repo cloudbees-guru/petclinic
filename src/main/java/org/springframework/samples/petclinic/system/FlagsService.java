@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.rollout;
+package org.springframework.samples.petclinic.system;
 
 import io.rollout.configuration.RoxContainer;
 import io.rollout.flags.RoxFlag;
@@ -6,10 +6,10 @@ import io.rollout.rox.server.Rox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.ExecutionException;
-import org.springframework.stereotype.Service;
 
 @Service
 public class FlagsService implements RoxContainer {
@@ -26,6 +26,7 @@ public class FlagsService implements RoxContainer {
 	@PostConstruct
 	void postConstruct() {
 		logger.info("Initializing feature flags... (using: " + ffkey + ")");
+		Rox.reset();
 		Rox.register("default", this);
 		try {
 			Rox.setup(ffkey).get();
