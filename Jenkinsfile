@@ -111,6 +111,11 @@ spec:
           }
       }
     }
+    stage('Trigger CloudBees CD pipeline') {
+      steps {
+        cloudBeesFlowRunPipeline addParam: '{"pipeline":{"pipelineName":"spring-petclinic - Demo pipeline","parameters":[]}}', configuration: 'CloudBees Guru CD', pipelineName: 'spring-petclinic - Demo pipeline', projectName: 'Shared demos'
+      }
+    }
   }
 
   post {
