@@ -61,10 +61,10 @@ spec:
                       options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                       publisherStrategy: 'EXPLICIT') {
               sh 'mvn sonar:sonar'
+              publishChecks name: 'SonarQube', text: 'I am happy with these results', title: 'Yoohoo'
             }
           }
         }
-        publishChecks name: 'Test', text: 'I am happy with these results', title: 'Yoohoo'
       }
     }
     stage('Publish to Nexus') {
