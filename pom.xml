@@ -81,7 +81,7 @@
     <dependency>
       <groupId>io.rollout.rox</groupId>
       <artifactId>rox-java-server</artifactId>
-      <version>4.8.1</version>
+      <version>4.9.1</version>
   </dependency>
 
     <!-- Added to run on Tomcat -->

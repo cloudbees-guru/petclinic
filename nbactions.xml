@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-spring-javaformat-apply</actionName>
+            <displayName>spring-javaformat-apply</displayName>
+            <goals>
+                <goal>spring-javaformat:apply</goal>
+            </goals>
+        </action>
+    </actions>

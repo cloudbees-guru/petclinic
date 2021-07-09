@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -17,6 +18,7 @@ public class SeleniumTest {
 
 	@Test
 	@Tag("integration")
+	@Disabled
 	public void testFindOwners() throws Exception {
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
 		WebDriver driver = new RemoteWebDriver(new URL("http://tools-1:4444/wd/hub"), firefoxOptions);

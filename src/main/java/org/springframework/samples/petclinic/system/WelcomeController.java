@@ -19,7 +19,6 @@ package org.springframework.samples.petclinic.system;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.rollout.FlagsController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -29,18 +28,25 @@ public class WelcomeController {
 	Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
 	@Autowired
-	private FlagsController flags;
+	private FlagsService flags;
 
 	@GetMapping("/")
 	public String welcome() {
+		if (flags.enableMemberLogin.isEnabled()) {
+			logger.info("Member Login feature is enabled");
+		}
+		else {
+			logger.info("Member Login feature is NOT enabled");
+		}
 		if (flags.enableFeatureOne.isEnabled()) {
 			logger.info("featureone true");
 			return "welcome_featureone";
 		}
 		else {
 			logger.info("featureone false");
-			return "welcome";
 		}
+
+		return "welcome";
 	}
 
 }

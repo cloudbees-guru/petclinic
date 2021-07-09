@@ -59,12 +59,10 @@
                       <span>Veterinarians</span>
                   </li>
 
-                  <!--
-                  <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
-                      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                      <span>Error</span>
+                  <li th:replace="${@flagsService.isEnableMemberLogin()} ? ~{::menuItem ('/login','login','login','lock','Member Login')} : _">
+                      <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                      <span>Member Login</span>
                   </li>
-                  -->
   
               </ul>
           </div>
