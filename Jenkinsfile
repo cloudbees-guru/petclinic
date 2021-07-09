@@ -54,16 +54,17 @@ spec:
     }
     stage('SonarQube analysis') {
       steps {
-          container('maven') {
-            withSonarQubeEnv('SonarQube CloudBees Guru') {
-              withMaven(
-                        mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
-                        options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
-                        publisherStrategy: 'EXPLICIT') {
-                sh 'mvn sonar:sonar'
-              }
+        container('maven') {
+          withSonarQubeEnv('SonarQube CloudBees Guru') {
+            withMaven(
+                      mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
+                      options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
+                      publisherStrategy: 'EXPLICIT') {
+              sh 'mvn sonar:sonar'
+              publishChecks name: 'SonarQube', text: 'I am happy with these results', title: 'Yoohoo'
             }
           }
+        }
       }
     }
     stage('Publish to Nexus') {
@@ -77,7 +78,7 @@ spec:
               // Assign to a boolean response verifying If the artifact name exists
               artifactExists = fileExists artifactPath;
 
-              if(artifactExists) {
+              if (artifactExists) {
                 nexusPublisher  nexusInstanceId: NEXUS_INSTANCE,
                                 nexusRepositoryId: NEXUS_REPOSITORY,
                                 packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: artifactPath]],
