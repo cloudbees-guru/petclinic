@@ -113,11 +113,7 @@ spec:
     }
     stage('Trigger CloudBees CD pipeline') {
       steps {
-        cloudBeesFlowTriggerRelease configuration: 'CloudBees Guru CD',
-                                    parameters: '{"release":{"releaseName":"Petclinic - 2021-08","stages":"[{\\"stageName\\": \\"Development\\", \\"stageValue\\": true}, {\\"stageName\\": \\"Integration\\", \\"stageValue\\": true}, {\\"stageName\\": \\"PreProduction\\", \\"stageValue\\": true}, {\\"stageName\\": \\"Production\\", \\"stageValue\\": true}, {\\"stageName\\": \\"UAT\\", \\"stageValue\\": true}]","parameters":"[{\\"parameterName\\": \\"applicationVersion\\", \\"parameterValue\\": \\"2.4.5\\"}]"}}', 
-                                    projectName: 'Shared demos',
-                                    releaseName: 'Petclinic - 2021-08',
-                                    startingStage: 'Development'
+        cloudBeesFlowRunPipeline addParam: '{"pipeline":{"pipelineName":"spring-petclinic - Demo pipeline","parameters":"[{\\"parameterName\\": \\"applicationVersion\\", \\"parameterValue\\": \\"2.4.5\\"}]"}}', configuration: 'CloudBees Guru CD', pipelineName: 'spring-petclinic - Demo pipeline', projectName: 'Shared demos'
       }
     }
   }
