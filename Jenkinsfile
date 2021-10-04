@@ -27,7 +27,7 @@ pipeline {
                             mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
                             options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                             publisherStrategy: 'EXPLICIT') {
-                        sh 'mvn clean verify'
+                        bat 'mvn clean verify'
                     }
                 //}
             }
@@ -43,7 +43,7 @@ pipeline {
                                 mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
                                 options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                                 publisherStrategy: 'EXPLICIT') {
-                            sh 'mvn sonar:sonar'
+                            bat 'mvn sonar:sonar'
                         }
                     }
                 //}
