@@ -58,7 +58,7 @@ spec:
         }
         stage('SonarQube analysis') {
             when {
-                environment name: 'CALL_SONARQUBE', value: true
+                environment name: 'CALL_SONARQUBE', value: 'true'
             }
             steps {
                 container('maven') {
@@ -75,7 +75,7 @@ spec:
         }
         stage('Publish to Nexus') {
             when {
-                environment name: 'CALL_NEXUS', value: true
+                environment name: 'CALL_NEXUS', value: 'true'
             }
             steps {
                 container('maven') {
@@ -101,7 +101,7 @@ spec:
         }
         stage('Feature flag usage check') {
             when {
-                environment name: 'CALL_FF', value: true
+                environment name: 'CALL_FF', value: 'true'
             }
             steps {
                 container('maven') {
@@ -126,7 +126,7 @@ spec:
         }
         stage('Trigger CloudBees CD pipeline') {
             when {
-                environment name: 'CALL_CD', value: true
+                environment name: 'CALL_CD', value: 'true'
             }
             steps {
                 cloudBeesFlowRunPipeline addParam: '{"pipeline":{"pipelineName":"spring-petclinic - Demo pipeline","parameters":"[{\\"parameterName\\": \\"applicationVersion\\", \\"parameterValue\\": \\"2.4.5\\"}]"}}', configuration: 'CloudBees Guru CD', pipelineName: 'spring-petclinic - Demo pipeline', projectName: 'Shared demos'
