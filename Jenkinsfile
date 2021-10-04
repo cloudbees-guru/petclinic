@@ -22,14 +22,14 @@ pipeline {
         stage('Run maven') {
             steps {
                 git(url: 'https://github.com/cloudbees-guru/petclinic', credentialsId: 'github-cloudbees-guru')
-                container('maven') {
+                //container('maven') {
                     withMaven(
                             mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
                             options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                             publisherStrategy: 'EXPLICIT') {
                         sh 'mvn clean verify'
                     }
-                }
+                //}
             }
         }
         stage('SonarQube analysis') {
@@ -37,7 +37,7 @@ pipeline {
                 environment name: 'CALL_SONARQUBE', value: 'true'
             }
             steps {
-                container('maven') {
+                //container('maven') {
                     withSonarQubeEnv('SonarQube CloudBees Guru') {
                         withMaven(
                                 mavenSettingsConfig: '4123d3ce-22c2-477d-83d7-623049473250',
@@ -46,7 +46,7 @@ pipeline {
                             sh 'mvn sonar:sonar'
                         }
                     }
-                }
+                //}
             }
         }
         stage('Publish to Nexus') {
@@ -54,7 +54,7 @@ pipeline {
                 environment name: 'CALL_NEXUS', value: 'true'
             }
             steps {
-                container('maven') {
+                //container('maven') {
                     script {
                         pom = readMavenPom file: "pom.xml";
                         filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
@@ -72,7 +72,7 @@ pipeline {
                             error "*** File: ${artifactPath}, could not be found";
                         }
                     }
-                }
+                //}
             }
         }
         stage('Feature flag usage check') {
@@ -80,7 +80,7 @@ pipeline {
                 environment name: 'CALL_FF', value: 'true'
             }
             steps {
-                container('maven') {
+                //container('maven') {
                     script {
                         sh """
                curl -o file.json \"https://x-api.rollout.io/public-api/applications/${ROLLOUT_APP_TOKEN}/Production/experiments" -H "accept: application/json" -H "Authorization: Bearer ${ROLLOUT_USER_TOKEN}"''
@@ -97,7 +97,7 @@ pipeline {
                         ).trim()
                         echo "Inactive experiments: ${KILLEDEXP}"
                     }
-                }
+                //}
             }
         }
         stage('Trigger CloudBees CD pipeline') {
