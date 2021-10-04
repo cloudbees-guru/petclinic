@@ -5,32 +5,8 @@ pipeline {
         skipDefaultCheckout true
     }
 
-    agent {
-        kubernetes {
-            yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    some-label: some-label-value
-spec:
-  containers:
-  - name: maven
-    image: maven:3.8.1-jdk-11-slim
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-      - name: cache
-        mountPath: /tmp/cache
-  volumes:
-    - name: cache
-      hostPath:
-        path: /tmp/cache
-"""
-        }
-    }
-
+    agent { label 'windows' }
+    
     environment {
         NEXUS_INSTANCE = "Nexus_CloudBees_Guru"
         NEXUS_REPOSITORY = "shared-demos"
