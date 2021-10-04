@@ -6,7 +6,7 @@ pipeline {
     }
 
     agent { label 'windows' }
-    
+
     environment {
         NEXUS_INSTANCE = "Nexus_CloudBees_Guru"
         NEXUS_REPOSITORY = "shared-demos"
@@ -110,9 +110,9 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            junit 'target/surefire-reports/**/*.xml'
-        }
-    }
+    //post {
+    //    always {
+    //        junit 'target/surefire-reports/**/*.xml'
+    //    }
+    //}
 }
