@@ -41,7 +41,7 @@ spec:
                       options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                       publisherStrategy: 'EXPLICIT') {
               sh 'mvn clean verify'
-              ls target
+              ls -l target
             }
           }
       }
