@@ -41,6 +41,7 @@ spec:
                       options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                       publisherStrategy: 'EXPLICIT') {
               sh 'mvn clean verify'
+              sh 'echo "bonjour coucou ça va ?" > ./target/test.txt'
               sh 'ls -l target'
             }
           }
