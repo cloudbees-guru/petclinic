@@ -49,7 +49,6 @@ spec:
       steps {
           container('maven') {
             script {
-              sh 'find / -type f -name "petclinic*"'
               cloudBeesFlowPublishArtifact artifactName: 'pcherry:petclinic-pcherry',
                                            artifactVersion: '1.0',
                                            configuration: 'CloudBees Guru CD',
